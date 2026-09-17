@@ -1,0 +1,64 @@
+from typing import List, Union
+from pydantic import AnyHttpUrl, field_validator
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=True,
+        extra="ignore"
+    )
+
+    APP_NAME: str = "DocuMind"
+    ENVIRONMENT: str = "development"
+    DEBUG: bool = True
+    API_V1_STR: str = "/api/v1"
+    SECRET_KEY: str = "default-secret-key-change-in-production-32chars"
+
+    # CORS
+    CORS_ORIGINS: List[str] = [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+    ]
+
+    @field_validator("CORS_ORIGINS", mode="before")
+    @classmethod
+    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
+        if isinstance(v, str) and not v.startswith("["):
+            return [i.strip() for i in v.split(",")]
+        elif isinstance(v, (list, str)):
+            return v
+        raise ValueError(v)
+
+    # Database
+    POSTGRES_USER: str = "documind"
+    POSTGRES_PASSWORD: str = "documind_secret"
+    POSTGRES_HOST: str = "localhost"
+    POSTGRES_PORT: int = 5432
+    POSTGRES_DB: str = "documind_db"
+    DATABASE_URL: str = "postgresql+asyncpg://documind:documind_secret@localhost:5432/documind_db"
+
+    # Security & JWT
+    JWT_SECRET_KEY: str = "documind-jwt-secret-key-replace-in-prod"
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 1 day
+
+    # Storage
+    STORAGE_DIR: str = "storage/documents"
+    MAX_UPLOAD_SIZE_MB: int = 25
+
+    # AI Configuration
+    LLM_PROVIDER: str = "openai"  # "openai", "mock"
+    LLM_API_KEY: str = ""
+    LLM_MODEL: str = "gpt-3.5-turbo"
+    LLM_BASE_URL: str = "https://api.openai.com/v1"
+
+    EMBEDDING_PROVIDER: str = "local"  # "local", "openai", "mock"
+    EMBEDDING_MODEL: str = "BAAI/bge-small-en-v1.5"
+    EMBEDDING_DIMENSION: int = 384
+
+
+settings = Settings()

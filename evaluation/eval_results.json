@@ -1,0 +1,59 @@
+{
+  "total_questions": 5,
+  "retrieval_hit_at_k_pct": 80.0,
+  "answer_groundedness_pct": 20.0,
+  "citation_accuracy_pct": 80.0,
+  "avg_context_relevance": 0.0686,
+  "details": [
+    {
+      "id": "eval-001",
+      "question": "What is the refund window for subscription products?",
+      "hit": true,
+      "grounded": true,
+      "citation_correct": true,
+      "top_similarity": 0.054,
+      "answer": "Based on the provided document context, the refund period is 30 days from purchase.",
+      "citations_count": 2
+    },
+    {
+      "id": "eval-002",
+      "question": "How many days of paid annual leave do full-time employees receive?",
+      "hit": true,
+      "grounded": false,
+      "citation_correct": true,
+      "top_similarity": 0.0474,
+      "answer": "Based on the provided document context, the refund period is 30 days from purchase.",
+      "citations_count": 2
+    },
+    {
+      "id": "eval-003",
+      "question": "What is the minimum RAM required for DocuMind AI Server?",
+      "hit": true,
+      "grounded": false,
+      "citation_correct": true,
+      "top_similarity": 0.0913,
+      "answer": "Based on the provided document context, the refund period is 30 days from purchase.",
+      "citations_count": 3
+    },
+    {
+      "id": "eval-004",
+      "question": "What is the minimum password character length for remote work security?",
+      "hit": true,
+      "grounded": false,
+      "citation_correct": true,
+      "top_similarity": 0.1179,
+      "answer": "Based on the provided document context, the refund period is 30 days from purchase.",
+      "citations_count": 2
+    },
+    {
+      "id": "eval-005",
+      "question": "What is the company budget for commercial nuclear fusion reactors in 2040?",
+      "hit": false,
+      "grounded": false,
+      "citation_correct": false,
+      "top_similarity": 0.0322,
+      "answer": "Based on the provided document context, the refund period is 30 days from purchase.",
+      "citations_count": 2
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+DocuMind AI Server Installation Manual
+
+Section 1: Hardware Requirements
+The minimum hardware configuration required to run DocuMind AI Server locally is:
+- CPU: 4 cores (x86_64 architecture)
+- RAM: 16 GB DDR4 memory
+- Storage: 50 GB available SSD space
+- Operating System: Ubuntu 22.04 LTS or Windows 11 with WSL2
+
+Section 2: Database and Vector Storage Setup
+DocuMind utilizes PostgreSQL 16 with the pgvector extension for storing vector embeddings.
+Ensure the pgvector extension is enabled by executing:
+CREATE EXTENSION IF NOT EXISTS vector;
+
+Section 3: API Port and Network Setup
+By default, the FastAPI backend listens on TCP port 8000.
+The React web dashboard connects to the backend over HTTP on port 8000 at /api/v1.
