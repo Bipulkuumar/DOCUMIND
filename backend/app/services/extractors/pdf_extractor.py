@@ -1,4 +1,4 @@
-import fitz  # PyMuPDF
+import pymupdf  # PyMuPDF
 from typing import List
 from app.services.extractors.base import BaseExtractor, ExtractedChunkContent
 from app.core.exceptions import IngestionException
@@ -8,7 +8,7 @@ class PDFExtractor(BaseExtractor):
     def extract(self, file_path: str) -> List[ExtractedChunkContent]:
         results: List[ExtractedChunkContent] = []
         try:
-            doc = fitz.open(file_path)
+            doc = pymupdf.open(file_path)
             for page_idx in range(len(doc)):
                 page = doc[page_idx]
                 page_text = page.get_text("text").strip()

@@ -143,13 +143,15 @@ npm run build
 ## 7. Health Checks & Monitoring
 
 Verify deployment endpoints:
-- **Root Health**: `GET https://api.documind.yourdomain.com/health`
-- **Swagger Docs**: `GET https://api.documind.yourdomain.com/docs`
-- **Metrics**: `GET https://api.documind.yourdomain.com/api/v1/metrics`
+- **Live Backend API**: `https://documind-45rg.onrender.com`
+- **Root Health**: `GET https://documind-45rg.onrender.com/health`
+- **API v1 Health**: `GET https://documind-45rg.onrender.com/api/v1/health`
+- **Swagger Docs**: `GET https://documind-45rg.onrender.com/docs`
+- **Metrics**: `GET https://documind-45rg.onrender.com/api/v1/metrics`
 
 Run automated smoke test:
 ```bash
-python scripts/production_smoke_test.py --url https://api.documind.yourdomain.com
+python scripts/production_smoke_test.py --url https://documind-45rg.onrender.com
 ```
 
 ---

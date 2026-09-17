@@ -11,6 +11,15 @@
 
 ---
 
+## 🌐 Deployed Services & Live Links
+
+- **Live Backend API**: [https://documind-45rg.onrender.com](https://documind-45rg.onrender.com)
+- **API Documentation (Swagger UI)**: [https://documind-45rg.onrender.com/docs](https://documind-45rg.onrender.com/docs)
+- **System Health Check**: [https://documind-45rg.onrender.com/health](https://documind-45rg.onrender.com/health)
+- **GitHub Repository**: [https://github.com/Bipulkuumar/DOCUMIND](https://github.com/Bipulkuumar/DOCUMIND)
+
+---
+
 ## 🏗️ System Architecture
 
 ```mermaid

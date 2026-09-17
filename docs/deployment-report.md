@@ -113,10 +113,11 @@ All credentials, database URIs, API keys, and JWT secrets are injected via envir
 
 ## 9. Live URLs & Verification
 
-- **Frontend Application**: Local dev at `http://localhost:5173` / Production target configurable.
-- **Backend API Base**: `http://localhost:8000/api/v1`
-- **Health Check**: `http://localhost:8000/health` -> `{"status":"healthy","database_connected":true}`
-- **OpenAPI Swagger Docs**: `http://localhost:8000/docs`
+- **Live Render Backend URL**: `https://documind-45rg.onrender.com`
+- **Root Health Check**: `https://documind-45rg.onrender.com/health` (HTTP 200 OK)
+- **API v1 Health Check**: `https://documind-45rg.onrender.com/api/v1/health` (HTTP 200 OK)
+- **OpenAPI Swagger Docs**: `https://documind-45rg.onrender.com/docs` (HTTP 200 OK)
+- **Frontend Application**: Local dev at `http://localhost:5173` / Docker port 3000
 
 ---
 

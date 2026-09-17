@@ -1,5 +1,5 @@
 from typing import List, Union
-from pydantic import AnyHttpUrl, field_validator
+from pydantic import AnyHttpUrl, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -13,9 +13,28 @@ class Settings(BaseSettings):
 
     APP_NAME: str = "DocuMind"
     ENVIRONMENT: str = "development"
+    APP_ENV: str = ""
     DEBUG: bool = True
     API_V1_STR: str = "/api/v1"
     SECRET_KEY: str = "default-secret-key-change-in-production-32chars"
+
+    @field_validator("ENVIRONMENT", mode="before")
+    @classmethod
+    def assemble_environment(cls, v: str, info) -> str:
+        return v
+
+    @field_validator("DEBUG", mode="before")
+    @classmethod
+    def assemble_debug(cls, v: bool, info) -> bool:
+        return v
+
+    @model_validator(mode="after")
+    def sync_app_env(self) -> "Settings":
+        if self.APP_ENV and self.ENVIRONMENT == "development":
+            self.ENVIRONMENT = self.APP_ENV
+        if self.ENVIRONMENT.lower() == "production":
+            self.DEBUG = False
+        return self
 
     # CORS
     CORS_ORIGINS: List[str] = [
@@ -28,7 +47,7 @@ class Settings(BaseSettings):
     @classmethod
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
         if isinstance(v, str) and not v.startswith("["):
-            return [i.strip() for i in v.split(",")]
+            return [i.strip() for i in v.split(",") if i.strip()]
         elif isinstance(v, (list, str)):
             return v
         raise ValueError(v)
