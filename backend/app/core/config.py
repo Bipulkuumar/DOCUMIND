@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
-        case_sensitive=True,
+        case_sensitive=False,
         extra="ignore"
     )
 
@@ -30,7 +30,7 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def sync_app_env(self) -> "Settings":
-        if self.APP_ENV and self.ENVIRONMENT == "development":
+        if self.APP_ENV:
             self.ENVIRONMENT = self.APP_ENV
         if self.ENVIRONMENT.lower() == "production":
             self.DEBUG = False
