@@ -13,9 +13,9 @@
 
 ## 🌐 Deployed Services & Live Links
 
-- **Live Backend API**: [https://documind-45rg.onrender.com](https://documind-45rg.onrender.com)
-- **API Documentation (Swagger UI)**: [https://documind-45rg.onrender.com/docs](https://documind-45rg.onrender.com/docs)
-- **System Health Check**: [https://documind-45rg.onrender.com/health](https://documind-45rg.onrender.com/health)
+- **Live Backend API**: [https://documind-41tk.onrender.com](https://documind-41tk.onrender.com)
+- **API Documentation (Swagger UI)**: [https://documind-41tk.onrender.com/docs](https://documind-41tk.onrender.com/docs)
+- **System Health Check**: [https://documind-41tk.onrender.com/health](https://documind-41tk.onrender.com/health)
 - **GitHub Repository**: [https://github.com/Bipulkuumar/DOCUMIND](https://github.com/Bipulkuumar/DOCUMIND)
 
 ---
