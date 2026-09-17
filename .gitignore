@@ -19,6 +19,8 @@ ENV/
 # File Storage & Uploads
 storage/documents/*
 !storage/documents/.gitkeep
+backend/storage/
+
 
 # Pytest & Coverage
 .pytest_cache/
