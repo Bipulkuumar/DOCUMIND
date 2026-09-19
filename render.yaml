@@ -27,8 +27,16 @@ services:
       - key: POSTGRES_DB
         value: documind_db
       - key: DATABASE_URL
-        value: postgresql+asyncpg://documind:documind_secret@localhost:5432/documind_db
+        fromDatabase:
+          name: documind-db
+          property: connectionString
       - key: STORAGE_DIR
         value: /tmp/documind-storage
       - key: CORS_ORIGINS
         value: "[\"https://*.vercel.app\",\"http://localhost:5173\",\"http://localhost:3000\"]"
+
+  - type: pserv
+    name: documind-db
+    env: postgres
+    plan: free
+    postgresMajorVersion: "16"
