@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: documind-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: "False"
+      - key: APP_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: POSTGRES_USER
+        value: documind
+      - key: POSTGRES_PASSWORD
+        value: documind_secret
+      - key: POSTGRES_HOST
+        value: localhost
+      - key: POSTGRES_PORT
+        value: "5432"
+      - key: POSTGRES_DB
+        value: documind_db
+      - key: DATABASE_URL
+        value: postgresql+asyncpg://documind:documind_secret@localhost:5432/documind_db
+      - key: STORAGE_DIR
+        value: /tmp/documind-storage
+      - key: CORS_ORIGINS
+        value: "[\"https://*.vercel.app\",\"http://localhost:5173\",\"http://localhost:3000\"]"

@@ -1,3 +1,4 @@
+import json
 from typing import List, Union
 from pydantic import AnyHttpUrl, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -42,15 +43,25 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://127.0.0.1:5173"
     ]
+    CORS_ORIGIN_REGEX: str = r"https://.*\\.vercel\\.app"
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
-        if isinstance(v, str) and not v.startswith("["):
-            return [i.strip() for i in v.split(",") if i.strip()]
-        elif isinstance(v, (list, str)):
+        if isinstance(v, list):
             return v
+        if isinstance(v, str):
+            if v.startswith("["):
+                try:
+                    parsed = json.loads(v)
+                    if isinstance(parsed, list):
+                        return [str(item).strip() for item in parsed if str(item).strip()]
+                except json.JSONDecodeError:
+                    pass
+            return [i.strip() for i in v.split(",") if i.strip()]
         raise ValueError(v)
+
+    PORT: int = 8000
 
     # Database
     POSTGRES_USER: str = "documind"
